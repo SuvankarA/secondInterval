@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Async Project-2</title>
+</head>
+<body style="background-color: #212121;">
+    <h1 style="color: white;">Click on Start button to Start the disco light</h1>
+    <button id="start">Start</button>
+    <button id="stop">Stop</button>
+</body>
+<script>
+    const randomColor = () =>{
+        const hex = '0123456789ABCDEF'
+        let color = '#'
+        for(let i=0; i<6; i++){
+            color += hex[Math.floor(Math.random()*16)]
+        }
+        return color;
+    }
+
+    let inter;
+    const startChange = () =>{
+        
+        const changeMe = () =>{
+            document.body.style.backgroundColor = randomColor()
+        }
+        if(!inter){
+            inter = setInterval(changeMe, 100)
+        }
+    }
+    const stopChange = () =>{
+        clearInterval(inter);
+        inter = null;
+    }
+    document.querySelector('#start').addEventListener('click', startChange, false);
+    document.querySelector('#stop').addEventListener('click', stopChange, false);
+</script>
+</html>
